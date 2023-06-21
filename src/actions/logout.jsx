@@ -5,6 +5,8 @@ import {toast} from "react-toastify";
 export async function  logoutAction() {
     //Удаление юзера
     deleteItem({key: "userName"})
+    deleteItem({key: "budget"})
+    deleteItem({key: "expenses"})
 
     toast.success("Учётная запись успешно удалена")
 

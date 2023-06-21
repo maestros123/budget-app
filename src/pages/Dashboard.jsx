@@ -1,15 +1,18 @@
-import {createBudget, createExpense, fetchData} from "../helper.js";
-import {useLoaderData} from "react-router-dom";
+import {createBudget, createExpense, deleteItem, fetchData} from "../helper.js";
+import {Link, useLoaderData} from "react-router-dom";
 import {Login} from "../components/Login.jsx";
 import {toast} from "react-toastify";
 import {AddBudgetForm} from "../components/AddBudgetForm.jsx";
 import {AddExpenseForm} from "../components/AddExpenseForm.jsx";
 import {BudgetItem} from "../components/BudgetItem.jsx";
+import {Table} from "../components/Table.jsx";
 
 export function dashboardLoader() {
     const userName = fetchData("userName");
     const budget = fetchData("budget");
-    return {  userName, budget }
+    const expenses = fetchData("expenses");
+
+    return {  userName, budget, expenses }
 }
 
 export async function dashboardAction({request}) {
@@ -50,11 +53,23 @@ export async function dashboardAction({request}) {
             throw new Error("Возникла проблема с созданием расходов")
         }
     }
+
+    if (_action === "deleteExpense") {
+        try {
+            deleteItem({
+                key: "expenses",
+                id: values.expenseId
+            })
+            return toast.success(`Расход удалён`)
+        } catch (e) {
+            throw new Error("Возникла проблема с удалением расхода")
+        }
+    }
 }
 
 
 export const Dashboard = () => {
-    const { userName, budget } = useLoaderData();
+    const { userName, budget, expenses } = useLoaderData();
 
     return (
         <>
@@ -77,6 +92,19 @@ export const Dashboard = () => {
                                         <BudgetItem key={budg.id} budget={budg} />
                                     ))}
                                 </div>
+                                {
+                                    expenses && expenses.length > 0 && (
+                                        <div className="grid-sm">
+                                            <h2>Последние расходы</h2>
+                                            <Table expenses={expenses.sort((a,b) => b.createdAt - a.createdAt).slice(0,8)}/>
+                                            {expenses.length > 8 && (
+                                                <Link to="expenses" className="btn btn--dark">
+                                                    Показать все затраты
+                                                </Link>
+                                            )}
+                                        </div>
+                                    )
+                                }
                         </div>)
                         : (
                                     <div className="grid-sm">

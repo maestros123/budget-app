@@ -30,7 +30,7 @@ export const AddBudgetForm = () => {
                     <input type="number" step="0.01" name="newBudgetAmount" id="newBudgetAmount" placeholder="например, 3500Р"  required/>
                 </div>
                 <input type="hidden" name="_action" value="createBudget"/>
-                <button type="submit" className="btn btn--dark" disabled={isSubmitting}>
+                <button type="submit" className="btn btn--primary" disabled={isSubmitting}>
                     <span>Создать бюджет</span>
                     <CurrencyDollarIcon width={20}/>
                 </button>

@@ -6,6 +6,10 @@ import {logoutAction} from "./actions/logout.jsx";
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {expensesAction, expensesLoader, ExpensesPage} from "./pages/ExpensesPage.jsx";
+import {budgetAction, budgetLoader, BudgetPage} from "./pages/BudgetPage.jsx";
+import {deleteBudget} from "./actions/deleteBudget.js";
+
 
 const router = createBrowserRouter([
   {
@@ -19,6 +23,27 @@ const router = createBrowserRouter([
         element: <Dashboard/>,
         loader: dashboardLoader,
         action: dashboardAction,
+        errorElement: <Error/>
+      },
+      {
+        path: "budget/:id",
+        element: <BudgetPage/>,
+        loader: budgetLoader,
+        action: budgetAction,
+        errorElement: <Error/>,
+        children: [
+          {
+            path: "delete",
+            action: deleteBudget
+          }
+        ]
+
+      },
+      {
+        path: "expenses",
+        element: <ExpensesPage/>,
+        loader: expensesLoader,
+        action: expensesAction,
         errorElement: <Error/>
       },
       {

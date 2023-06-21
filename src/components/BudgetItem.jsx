@@ -1,7 +1,10 @@
 import {calculateSpentByBudget, formatCurency, formatPercentage} from "../helper.js";
+import {Form, Link} from "react-router-dom";
+import {BanknotesIcon} from "@heroicons/react/24/solid/index.js";
+import {TrashIcon} from "@heroicons/react/24/solid";
 
 
-export const BudgetItem = ( {budget} ) => {
+export const BudgetItem = ( {budget, showDelete = false} ) => {
     const {id, name, amount, color} = budget
     const spent = calculateSpentByBudget(id)
 
@@ -18,6 +21,26 @@ export const BudgetItem = ( {budget} ) => {
                 <small>{formatCurency(spent)} портачено</small>
                 <small>{formatCurency(amount- spent)} осталось</small>
             </div>
+            {
+                showDelete ? (
+                    <Form method="post" action="delete"
+                    onSubmit={(event) => {
+                        if(!confirm("Вы уверены, что хотите безвозвратоно удалить данный бюджет?")) {
+                            event.preventDefault()
+                        }
+                    }}>
+                        <button type="submit" className="btn">
+                            <span>Удалить бюджет</span>
+                            <TrashIcon width={20} />
+                        </button>
+                    </Form>
+                ) : (
+                    <Link to={`/budget/${id}`} className="btn">
+                        <span>Подробнее</span>
+                        <BanknotesIcon width={20} />
+                    </Link>
+                )
+            }
         </div>
     )
 }

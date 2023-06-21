@@ -50,7 +50,7 @@ export const AddExpenseForm = ( {budget} ) => {
                         </select>
                     </div>
                     <input type="hidden" name="_action" value="createExpense"/>
-                    <button type="submit" className="btn btn--dark" disabled={isSubmitting}>
+                    <button type="submit" className="btn btn--primary" disabled={isSubmitting}>
                         <span>Добавить расходы</span>
                         <PlusCircleIcon width={20}/>
                     </button>

@@ -30,11 +30,13 @@ svg {
 
   /* colors */
   --accent: 170 100% 40%;
+  --primary: 196, 100%, 35%;
   --bkg: 190 60% 98%;
   --text: 185 26% 9%;
   --muted: 183 8% 55%;
   --light: 180 14% 85%;
   --warning: 4 66% 63%;
+  --light-blue: 224 100% 94%;
 
   /* utils */
   --space-xs: 8px;
@@ -133,6 +135,7 @@ p {
   -webkit-box-shadow 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
   transition: box-shadow 300ms cubic-bezier(0.075, 0.82, 0.165, 1),
   -webkit-box-shadow 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  justify-self: end;
 }
 
 :where(a, .btn):focus {
@@ -168,6 +171,10 @@ p {
 :where(.btn):is(:hover, :focus-visible) {
   background-color: var(--backdrop);
   color: var(--color);
+}
+
+:where(.btn--primary) {
+    --backdrop: hsla(196, 100%, 35%, 1);
 }
 
 :where(.btn--dark) {
@@ -420,7 +427,7 @@ select {
   display: -ms-grid;
   display: grid;
   gap: var(--space-sm);
-  background-color: hsl(var(--light));
+  background-color: hsl(var(--light-blue));
   padding: var(--space-xl);
   -webkit-box-shadow: 0.25em 0.3em 1em hsl(var(--muted) / 0.2);
   box-shadow: 0.25em 0.3em 1em hsl(var(--muted) / 0.2);
@@ -581,7 +588,6 @@ table a {
   color: hsl(var(--bkg));
   background-color: hsl(var(--accent));
   padding: var(--space-xs) var(--space-sm);
-  border-radius: var(--round-full);
 }
 
 /* toast */
