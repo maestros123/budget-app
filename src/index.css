@@ -52,7 +52,7 @@ svg {
   --round-full: 100vmax;
 
   /* toast customizations */
-  --toastify-color-success: hsl(var(--accent));
+  --toastify-color-success: hsl(var(--primary));
 }
 
 body {
@@ -109,7 +109,7 @@ p {
 /* color utils */
 
 .accent {
-  color: hsl(var(--accent));
+  color: hsl(var(--primary));
 }
 
 .muted {
@@ -368,9 +368,9 @@ select {
 
 :is(input, select):focus {
   outline: none;
-  border-color: hsl(var(--accent));
-  -webkit-box-shadow: 0 0 0 1px hsl(var(--accent));
-  box-shadow: 0 0 0 1px hsl(var(--accent));
+  border-color: hsl(var(--primary));
+  -webkit-box-shadow: 0 0 0 1px hsl(var(--primary));
+  box-shadow: 0 0 0 1px hsl(var(--primary));
 }
 
 /* Intro */

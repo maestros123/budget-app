@@ -98,7 +98,7 @@ export const Dashboard = () => {
                                             <h2>Последние расходы</h2>
                                             <Table expenses={expenses.sort((a,b) => b.createdAt - a.createdAt).slice(0,8)}/>
                                             {expenses.length > 8 && (
-                                                <Link to="expenses" className="btn btn--dark">
+                                                <Link to="expenses" className="btn btn--primary">
                                                     Показать все затраты
                                                 </Link>
                                             )}
